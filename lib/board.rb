@@ -3,20 +3,19 @@ class Board
 
   def initialize
     @rows = [
-      ['.','.','o','x','.','o','.'],
-      ['.','.','x','.','.','.','.'],
+      ['.','.','.','.','.','.','.'],
+      ['.','.','.','.','.','.','.'],
       ['.','.','.','.','.','.','.'],
       ['.','.','.','.','.','.','.'],
       ['.','.','.','.','.','.','.'],
       ['.','.','.','.','.','.','.']
     ]
-    # @columns = columns
-    #thinking we will create a Columns class with A-G column attributes to make iterating through each column easier
+    # @columns = [a, b, c, d, e, f, g]
   end
 
   def welcome_message
   puts " "
-  puts  "Ready to play Connect Four? Let's go!"
+  p  "Ready to play Connect Four? Let's go!"
   end
 
   def print_board
