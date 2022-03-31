@@ -16,8 +16,9 @@ RSpec.describe Board do
 
   it "can print an empty board" do
     board = Board.new
-
+# require "pry"; binding.pry
   expect{board.print_board}.to output(" \nA B C D E F G\n. . . . . . .\n. . . . . . .\n. . . . . . .\n. . . . . . .\n. . . . . . .\n. . . . . . .\n \n").to_stdout
+
   end
-  
+
 end
