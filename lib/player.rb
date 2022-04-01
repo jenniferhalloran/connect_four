@@ -4,16 +4,20 @@ attr_reader :board
 
   def initialize(board)
     @board = board
-
   end
 
   def get_user_choice
     column_choice = gets.downcase.strip
+    drop(column_choice)
   end
 
   def drop(column_choice)
     ##I would love to refactor this to be shorter and not have to if/else through each input
-
+    # @columns.each do |column|
+    #   if column == get_user_choice
+    #   board.column[board.column.index(".")] = "x"
+    #   end
+    # end
     if column_choice == "a"
       board.column_a[board.column_a.index(".")] = "x"
 
@@ -37,6 +41,6 @@ attr_reader :board
     else
       "Silly goose, that's not a column! Try again."
     end
-    
+    @board.print_board
   end
 end

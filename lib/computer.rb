@@ -7,9 +7,9 @@ attr_reader :board
     @board = board
   end
 
-  def choose_column
-    p @board.columns.sample
-    # selects a random column
+  def get_computer_choice
+    column_choice = @board.columns.sample
+    drop(column_choice)
   end
 
 
@@ -36,10 +36,7 @@ attr_reader :board
     elsif column_choice == "g"
       board.column_g[board.column_g.index(".")] = "o"
     end
+
+  @board.print_board
   end
 end
-
-board = Board.new
-computer = Computer.new(board)
-
-computer.choose_column

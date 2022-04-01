@@ -1,6 +1,6 @@
 
 class Board
- attr_reader :rows, :column_a,:column_b,:column_c,:column_d,:column_e,:column_f,:column_g, :columns
+ attr_reader :rows, :column_a,:column_b,:column_c,:column_d,:column_e,:column_f,:column_g, :columns, :grid
 
   def initialize
     @grid = [
@@ -41,3 +41,15 @@ end
 # board.print_board
 # p board.column_a
 # require "pry"; binding.pry
+
+# board = Board.new
+# game = Game.new(board)
+# player = Player.new(board)
+# computer = Computer.new(board)
+# computer.drop("a")
+# player.drop("b")
+# computer.drop("c")
+# player.drop("d")
+# computer.drop("e")
+# player.drop("f")
+# computer.drop("g")

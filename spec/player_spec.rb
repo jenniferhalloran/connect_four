@@ -11,17 +11,10 @@ RSpec.describe Player do
     expect(player).to be_an_instance_of(Player)
   end
 
-  it "can access the board" do
+  it "initializes with a board" do
     board = Board.new
     player = Player.new(board)
-
-    expect(player.board.columns). to eq([['.','.','.','.','.','.'],
-      ['.','.','.','.','.','.'],
-      ['.','.','.','.','.','.'],
-      ['.','.','.','.','.','.'],
-      ['.','.','.','.','.','.'],
-      ['.','.','.','.','.','.'],
-      ['.','.','.','.','.','.']])
+  expect(player.board).to eq(board)
   end
 
   it "can access columns from the board" do
