@@ -22,11 +22,6 @@ class Board
 
   end
 
-  def welcome_message
-  puts " "
-  p  "Ready to play Connect Four? Let's go!"
-  end
-
   def print_board
     puts " "
     puts "A B C D E F G"
@@ -39,9 +34,8 @@ class Board
 
 end
 
-board = Board.new
-board.print_board
-
+# random little debugging bits:
+# board = Board.new
+# board.print_board
 # p board.column_a
-
 # require "pry"; binding.pry
