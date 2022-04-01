@@ -1,9 +1,9 @@
 
 class Board
- attr_reader :rows, :column_a,:column_b,:column_c,:column_d,:column_e,:column_f,:column_g
+ attr_reader :rows, :column_a,:column_b,:column_c,:column_d,:column_e,:column_f,:column_g, :columns
 
   def initialize
-    @columns = [
+    @grid = [
       ['.','.','.','.','.','.'], # = column A = @columns[0]
       ['.','.','.','.','.','.'], # = column B = @columns[1]
       ['.','.','.','.','.','.'], # = column C = @columns[2]
@@ -12,20 +12,22 @@ class Board
       ['.','.','.','.','.','.'], # = column F = @columns[5]
       ['.','.','.','.','.','.']  # = column G = @columns[6]
     ]
-    @column_a = @columns[0]
-    @column_b = @columns[1]
-    @column_c = @columns[2]
-    @column_d = @columns[3]
-    @column_e = @columns[4]
-    @column_f = @columns[5]
-    @column_g = @columns[6]
+    @column_a = @grid[0]
+    @column_b = @grid[1]
+    @column_c = @grid[2]
+    @column_d = @grid[3]
+    @column_e = @grid[4]
+    @column_f = @grid[5]
+    @column_g = @grid[6]
+
+    @columns = ["a", "b", "c", "d", "e", "f", "g"]
 
   end
 
   def print_board
     puts " "
     puts "A B C D E F G"
-    @columns.transpose.reverse.map do |column|
+    @grid.transpose.reverse.map do |column|
       puts column.join(' ')
     end
     puts " "
