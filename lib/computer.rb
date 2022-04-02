@@ -12,8 +12,9 @@ attr_reader :board
   end
 
   def get_computer_choice
+    sleep([0,1].sample) #not trying to make the instructors sit there forever testing our project
     column_choice = @board.columns.sample
-    p "The computer chose column #{column_choice}."
+    puts "The computer chose column #{column_choice}."
     drop(column_choice)
   end
 

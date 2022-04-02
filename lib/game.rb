@@ -14,8 +14,10 @@ attr_reader :board, :player1, :computer, :turn
   end
 
   def intro
-    p "Welcome to Connect 4!"
-    p "You're playing against the computer, you get to go first!"
+    puts " "
+    puts "Welcome to Jenn & Brad's Connect 4!"
+    puts "You're playing against the computer, you're 'x' and you get to go first!"
+    @board.print_board
     start_turns
   end
 

@@ -8,14 +8,30 @@ attr_reader :board
 
   def turn
     puts " "
-    p "Please enter a column A - G to place your piece"
-    p "Enter Q to quit :("
+    puts "Please enter a column A - G to place your piece"
+    puts "...or enter Q to quit :("
     get_user_choice
   end
 
   def get_user_choice
     column_choice = gets.upcase.strip
-    drop(column_choice)
+    validate_input(column_choice)
+  end
+
+  def validate_input(column_choice)
+    ##DEF want to refactor this....its obnoxious
+    if column_choice == "A" || column_choice == "B" || column_choice == "C" || column_choice == "D" || column_choice == "E" || column_choice == "F" || column_choice == "G"
+      drop(column_choice)
+    elsif column_choice == "Q"
+      puts " "
+      puts "Fine, we'll find someone else to play with. CYA!"
+      puts " "
+      exit
+    else
+      puts " "
+      puts "Silly goose, that's not a column! Try again."
+      turn
+    end
   end
 
   def drop(column_choice)
@@ -45,11 +61,9 @@ attr_reader :board
 
     elsif column_choice == "G"
       board.column_g[board.column_g.index(".")] = "x"
-    else
-      puts " "
-      p "Silly goose, that's not a column! Try again."
-      turn
     end
+
     @board.print_board
   end
+
 end

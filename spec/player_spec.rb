@@ -25,16 +25,16 @@ RSpec.describe Player do
   end
 
 
-  xit "can change first empty index of every column to an x" do
+  it "can change first empty index of every column to an x" do
     board = Board.new
     player = Player.new(board)
-    player.drop("a")
-    player.drop("b")
-    player.drop("c")
-    player.drop("d")
-    player.drop("e")
-    player.drop("f")
-    player.drop("g")
+    player.drop("A")
+    player.drop("B")
+    player.drop("C")
+    player.drop("D")
+    player.drop("E")
+    player.drop("F")
+    player.drop("G")
 
     expect(player.board.column_a).to eq(['x','.','.','.','.','.'])
     expect(player.board.column_b).to eq(['x','.','.','.','.','.'])
@@ -44,7 +44,7 @@ RSpec.describe Player do
     expect(player.board.column_f).to eq(['x','.','.','.','.','.'])
     expect(player.board.column_g).to eq(['x','.','.','.','.','.'])
 
-    player.drop("g")
+    player.drop("G")
 
     expect(player.board.column_g).to eq(['x','x','.','.','.','.'])
   end
