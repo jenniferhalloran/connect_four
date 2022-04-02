@@ -9,10 +9,10 @@ attr_reader :board
 
   def choose_column
     p @board.columns.sample
-  end #Ramdomly selects a board column 
+  end #Ramdomly selects a board column
 
 
-  def drop(column_choice)
+  def drop(column_choice)#added drop method
     # https://stackoverflow.com/questions/27465153/how-can-i-replace-one-single-element-in-an-array-in-ruby
     # this drop method is taking the players input then finding the first index that = "." and replacing it with an x
     if column_choice == "a"
