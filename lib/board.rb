@@ -3,6 +3,7 @@ class Board
  attr_reader :rows, :column_a,:column_b,:column_c,:column_d,:column_e,:column_f,:column_g, :columns, :grid
 
   def initialize
+    #renamed grid
     @grid = [
       ['.','.','.','.','.','.'], # = column A = @grid[0]
       ['.','.','.','.','.','.'], # = column B = @grid[1]
@@ -21,6 +22,7 @@ class Board
     @column_g = @grid[6]
 
     @columns = ["A", "B", "C", "D", "E", "F", "G"]
+    #columns is an array of individual columns
   end
 
   def print_board

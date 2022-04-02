@@ -1,51 +1,39 @@
 require './lib/board'
 require 'pry'
 
-class Computer
+class Computer #added computer class
 attr_reader :board
   def initialize(board)
     @board = board
   end
 
-  def turn
-    get_computer_choice
-  end
-
-  def get_computer_choice
-    sleep([0,1].sample) #not trying to make the instructors sit there forever testing our project
-    column_choice = @board.columns.sample
-    puts "The computer chose column #{column_choice}."
-    drop(column_choice)
-  end
+  def choose_column
+    p @board.columns.sample
+  end #Ramdomly selects a board column
 
 
-  def drop(column_choice)
+  def drop(column_choice)#added drop method
     # https://stackoverflow.com/questions/27465153/how-can-i-replace-one-single-element-in-an-array-in-ruby
     # this drop method is taking the players input then finding the first index that = "." and replacing it with an x
-    if column_choice == "A"
+    if column_choice == "a"
       board.column_a[board.column_a.index(".")] = "o"
-    elsif column_choice == "B"
+    elsif column_choice == "b"
       board.column_b[board.column_b.index(".")] = "o"
 
-    elsif column_choice == "C"
+    elsif column_choice == "c"
       board.column_c[board.column_c.index(".")] = "o"
 
-    elsif column_choice == "D"
+    elsif column_choice == "d"
       board.column_d[board.column_d.index(".")] = "o"
 
-    elsif column_choice == "E"
+    elsif column_choice == "e"
       board.column_e[board.column_e.index(".")] = "o"
 
-    elsif column_choice == "F"
+    elsif column_choice == "f"
       board.column_f[board.column_f.index(".")] = "o"
 
-    elsif column_choice == "F"
-      board.column_g[board.column_g.index(".")] = "o"
-
-    elsif column_choice == "G"
+    elsif column_choice == "g"
       board.column_g[board.column_g.index(".")] = "o"
     end
-
-  @board.print_board
   end
 end
