@@ -53,7 +53,7 @@ end #Test that the computer has a board
     computer.drop("g")
 
     expect(board.column_g).to eq(['o','o','.','.','.','.'])
-  end
+  end # Test the computer can add an "o" to the board
 
 
 
