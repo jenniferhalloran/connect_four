@@ -8,13 +8,13 @@ RSpec.describe Computer do
     board = Board.new
     computer = Computer.new(board)
   expect(computer).to be_an_instance_of(Computer)
-end #Test that the computer exists 
+end #Test that the computer exists
 
   it "initializes with a board" do
     board = Board.new
     computer = Computer.new(board)
   expect(computer.board).to eq(board)
-  end
+end #Test that the computer has a board
 
   it "can access columns from the board" do
     board = Board.new
