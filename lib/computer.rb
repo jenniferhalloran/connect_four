@@ -9,7 +9,7 @@ attr_reader :board
 
   def choose_column
     p @board.columns.sample
-  end
+  end #Ramdomly selects a board column 
 
 
   def drop(column_choice)
