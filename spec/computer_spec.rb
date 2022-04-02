@@ -21,7 +21,7 @@ end #Test that the computer has a board
     computer = Computer.new(board)
 
     expect(computer.board.column_a).to eq(['.','.','.','.','.','.'])
-  end
+  end #Test that the computer can accest columns
 
   xit "can select a random column" do
     board = Board.new
