@@ -38,6 +38,36 @@ attr_reader :board
     exit
   end
 
+  def valid_column?(column_choice)
+    if column_choice == "A"
+      @board.column_a.include?(".")
+    elsif column_choice == "B"
+      @board.column_b.include?(".")
+    elsif column_choice == "C"
+      @board.column_c.include?(".")
+    elsif column_choice == "D"
+      @board.column_d.include?(".")
+    elsif column_choice == "E"
+      @board.column_e.include?(".")
+    elsif column_choice == "F"
+      @board.column_f.include?(".")
+    elsif column_choice == "G"
+      @board.column_g.include?(".")
+    end
+  end
+
+  def validate_column(column_choice)
+    if valid_column?(column_choice)
+      drop(column_choice)
+    else
+      @board.print_board
+      puts "That column is full, try again!"
+      turn
+    end
+  end
+
+
+
   def drop(column_choice)
     ##I would love to refactor this to be shorter and not have to if/else through each input
     # @columns.each do |column|
