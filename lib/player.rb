@@ -20,18 +20,22 @@ attr_reader :board
 
   def validate_input(column_choice)
     ##DEF want to refactor this....its obnoxious
-    if column_choice == "A" || column_choice == "B" || column_choice == "C" || column_choice == "D" || column_choice == "E" || column_choice == "F" || column_choice == "G"
+    if @board.columns.includes?(column_choice)
       drop(column_choice)
     elsif column_choice == "Q"
-      puts " "
-      puts "Fine, we'll find someone else to play with. CYA!"
-      puts " "
-      exit
+      quit
     else
       puts " "
       puts "Silly goose, that's not a column! Try again."
       turn
     end
+  end
+
+  def quit
+    puts " "
+    puts "Fine, we'll find someone else to play with. CYA!"
+    puts " "
+    exit
   end
 
   def drop(column_choice)
