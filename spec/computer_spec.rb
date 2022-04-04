@@ -23,14 +23,6 @@ end #Test that the computer has a board
     expect(computer.board.column_a).to eq(['.','.','.','.','.','.'])
   end #Test that the computer can accest columns
 
-  xit "can select a random column" do
-    board = Board.new
-    computer = Computer.new(board)
-    columns = [a, b, c, d, e, f, g]
-
-    expect(computer.choose_column).to eq()
-  end
-
   it "can change first empty index of every column to an 'o'" do
     board = Board.new
     computer = Computer.new(board)
