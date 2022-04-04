@@ -43,7 +43,7 @@ RSpec.describe Player do
   expect(player.available_column?("D")).to eq(true)
   end
 
-  it "can change first empty index of every column to an x" do
+  it "can drop an 'x' on the board" do
     board = Board.new
     player = Player.new(board)
     player.drop("A")
@@ -61,10 +61,6 @@ RSpec.describe Player do
     expect(player.board.column_e).to eq(['x','.','.','.','.','.'])
     expect(player.board.column_f).to eq(['x','.','.','.','.','.'])
     expect(player.board.column_g).to eq(['x','.','.','.','.','.'])
-
-    player.drop("G")
-
-    expect(player.board.column_g).to eq(['x','x','.','.','.','.'])
   end
 
   it "tells the player invalid column if they don't respond with A-G" do
