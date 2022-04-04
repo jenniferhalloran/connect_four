@@ -7,7 +7,8 @@ attr_reader :board
     @board = board
   end
 
-  def choose_column
+
+  def turn
     column_choice = @board.columns.sample
     validate_column(column_choice)
   end
@@ -35,29 +36,30 @@ attr_reader :board
       puts "The computer chose column #{column_choice}"
       drop(column_choice)
     else
-      choose_column
+      turn
     end
   end
 
   def drop(column_choice)
-    if column_choice == "a"
+    if column_choice == "A"
       board.column_a[board.column_a.index(".")] = "o"
-    elsif column_choice == "b"
+      
+    elsif column_choice == "B"
       board.column_b[board.column_b.index(".")] = "o"
 
-    elsif column_choice == "c"
+    elsif column_choice == "C"
       board.column_c[board.column_c.index(".")] = "o"
 
-    elsif column_choice == "d"
+    elsif column_choice == "D"
       board.column_d[board.column_d.index(".")] = "o"
 
-    elsif column_choice == "e"
+    elsif column_choice == "E"
       board.column_e[board.column_e.index(".")] = "o"
 
-    elsif column_choice == "f"
+    elsif column_choice == "F"
       board.column_f[board.column_f.index(".")] = "o"
 
-    elsif column_choice == "g"
+    elsif column_choice == "G"
       board.column_g[board.column_g.index(".")] = "o"
     end
     @board.print_board

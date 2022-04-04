@@ -20,7 +20,7 @@ attr_reader :board
 
   def validate_input(column_choice)
     ##DEF want to refactor this....its obnoxious
-    if @board.columns.includes?(column_choice)
+    if @board.columns.include?(column_choice)
       drop(column_choice)
     elsif column_choice == "Q"
       quit
@@ -99,5 +99,4 @@ attr_reader :board
 
     @board.print_board
   end
-
 end
