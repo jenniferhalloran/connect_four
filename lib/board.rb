@@ -1,18 +1,17 @@
-
 class Board
  attr_reader :rows, :column_a,:column_b,:column_c,:column_d,:column_e,:column_f,:column_g, :columns, :grid
 
   def initialize
-    #renamed grid
     @grid = [
-      ['.','.','.','.','.','.'], # = column A = @grid[0]
-      ['.','.','.','.','.','.'], # = column B = @grid[1]
-      ['.','.','.','.','.','.'], # = column C = @grid[2]
-      ['.','.','.','.','.','.'], # = column D = @grid[3]
-      ['.','.','.','.','.','.'], # = column E = @grid[4]
-      ['.','.','.','.','.','.'], # = column F = @grid[5]
-      ['.','.','.','.','.','.']  # = column G = @grid[6]
+      ['.','.','.','.','.','.'], # = column A
+      ['.','.','.','.','.','.'], # = column B
+      ['.','.','.','.','.','.'], # = column C
+      ['.','.','.','.','.','.'], # = column D
+      ['.','.','.','.','.','.'], # = column E
+      ['.','.','.','.','.','.'], # = column F
+      ['.','.','.','.','.','.']  # = column G
     ]
+    # => I think we should make a column class?
     @column_a = @grid[0]
     @column_b = @grid[1]
     @column_c = @grid[2]
@@ -20,9 +19,7 @@ class Board
     @column_e = @grid[4]
     @column_f = @grid[5]
     @column_g = @grid[6]
-
     @columns = ["A", "B", "C", "D", "E", "F", "G"]
-    #columns is an array of individual columns
   end
 
   def print_board
