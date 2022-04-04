@@ -1,6 +1,7 @@
 require './lib/board'
 require './lib/player'
 require './lib/game'
+require 'pry'
 
 RSpec.describe Player do
 
@@ -24,6 +25,16 @@ RSpec.describe Player do
     expect(player.board.column_a).to eq(['.','.','.','.','.','.'])
   end
 
+  it "can choose a column" do
+    board = Board.new
+    computer = Computer.new(board)
+    player = Player.new(board)
+
+    allow($stdin).to receive(:gets).and_return('A')
+    column = $stdin.gets
+
+    expect(column).to eq('A')
+  end
 
   it "can change first empty index of every column to an x" do
     board = Board.new
