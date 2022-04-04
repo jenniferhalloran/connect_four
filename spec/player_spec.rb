@@ -15,6 +15,7 @@ RSpec.describe Player do
   it "initializes with a board" do
     board = Board.new
     player = Player.new(board)
+
   expect(player.board).to eq(board)
   end
 
@@ -22,7 +23,7 @@ RSpec.describe Player do
     board = Board.new
     player = Player.new(board)
 
-    expect(player.board.column_a).to eq(['.','.','.','.','.','.'])
+  expect(player.board.column_a).to eq(['.','.','.','.','.','.'])
   end
 
   it "can choose a column" do
@@ -30,10 +31,16 @@ RSpec.describe Player do
     computer = Computer.new(board)
     player = Player.new(board)
 
-    allow($stdin).to receive(:gets).and_return('A')
+  allow($stdin).to receive(:gets).and_return('A')
     column = $stdin.gets
 
-    expect(column).to eq('A')
+  expect(column).to eq('A')
+  end
+
+  it "can validate columns" do
+    board = Board.new
+    player = Player.new(board)
+  expect(player.available_column?("D")).to eq(true)
   end
 
   it "can change first empty index of every column to an x" do
