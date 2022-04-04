@@ -23,7 +23,7 @@ end #Test that the computer has a board
     expect(computer.board.column_a).to eq(['.','.','.','.','.','.'])
   end #Test that the computer can accest columns
 
-  it "can change first empty index of every column to an 'o'" do
+  it "can drop an 'o' on the board" do
     board = Board.new
     computer = Computer.new(board)
     computer.drop("A")
