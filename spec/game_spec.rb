@@ -13,11 +13,11 @@ RSpec.describe Game do
 
   end
 
-  xit "prints a welcome message" do
+  it "prints a welcome message" do
     board = Board.new
     game = Game.new(board)
 
-    expect{game.intro}.to output("\"Welcome to Connect 4!\"\n\"You're playing against the computer, you get to go first!\"\n").to_stdout
+    expect{game.welcome_message}.to output(" \nWelcome to Jenn & Brad's Connect 4!\nEnter \"P\" to play. Unless you're a quitter. Then enter \"Q\".\n").to_stdout
   end
   # Can you test something that then asks for user input??
   it "can access columns from the board" do

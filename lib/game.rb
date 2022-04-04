@@ -14,35 +14,39 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
 
 
   def main_menu
-    puts " "
-    puts "Welcome to Jenn & Brad's Connect 4!"
-    puts 'Enter "P" to play. Unless you\'re a quitter. Then enter "Q".'
+    welcome_message
     loop do
       user_input = gets.upcase.strip
       if user_input == "P"
         initial_turn
+        take_turns
         break
       elsif user_input == "Q"
         puts "Sorry to see you go. If you change your mind, we might throw in a prize..."
         exit
-        #OR @player.quit but thought it would be fun to have a different response.
       else
         puts 'Hmmm, that wasn\'t an option. Lets try that again.. "P" to play or "Q" to quit.'
       end
     end
   end
 
+  def welcome_message
+    puts " "
+    puts "Welcome to Jenn & Brad's Connect 4!"
+    puts 'Enter "P" to play. Unless you\'re a quitter. Then enter "Q".'
+  end
+
 
   def initial_turn
     puts " "
     puts "Yay! We hoped you would say that. You're playing against the computer, you're 'x' and you get to go first!"
-    @board.print_board
-    take_turns
+    # @board.print_board
   end
 
 
   def take_turns
     loop {
+      @board.print_board
       turn_counter
       if @turn == "player1"
         @player1.turn
@@ -75,6 +79,13 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
   end
 
 
+  # def vertical_win?
+  #   joined = @board.grid.select do |column|
+  #     column.join.include?("xxxx")
+  #   end
+  # end
+
+
   def check_end_game
     if full_board?
       puts "It's a draw! You almost got 'em, you should try again."
@@ -89,10 +100,9 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     puts 'Want to play again? Enter "Y". Otherwise enter any key to exit.'
     response = gets.upcase.strip
     if response == "Y"
-      puts 'Love that for you! Same rules as the last game - you\'re "x" and you go first.'
+      puts 'Love that for you'
       board = Board.new
       game= Game.new(board)
-      board.print_board
       game.main_menu
     else
       quit

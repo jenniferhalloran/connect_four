@@ -49,11 +49,11 @@ RSpec.describe Player do
     expect(player.board.column_g).to eq(['x','x','.','.','.','.'])
   end
 
-  xit "tells the player invalid column if they don't respond with A-G" do
+  it "tells the player invalid column if they don't respond with A-G" do
     board = Board.new
     player = Player.new(board)
 
-    expect(player.drop("p")).to eq("Silly goose, that's not a column! Try again.")
+    expect(player.give_response("p")).to eq("Silly goose, that's not a column! Try again.")
   end
 
 end
