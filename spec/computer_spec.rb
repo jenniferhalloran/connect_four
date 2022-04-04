@@ -30,6 +30,13 @@ end #Test that the computer has a board
   expect(board.columns.include?(computer.choose_column)).to eq(true)
   end
 
+  it "can validate columns" do
+    board = Board.new
+    computer = Computer.new(board)
+
+  expect(computer.valid_column?("D")).to eq(true)
+  end
+
   it "can drop an 'o' on the board" do
     board = Board.new
     computer = Computer.new(board)
