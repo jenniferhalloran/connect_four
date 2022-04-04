@@ -70,4 +70,29 @@ RSpec.describe Player do
     expect(player.board.column_g).to eq(['x','.','.','.','.','.'])
   end
 
+  it "can drop an 'x' on top of another 'x'" do
+    board = Board.new
+    player = Player.new(board)
+    player.drop("A")
+    player.drop("B")
+    player.drop("C")
+    player.drop("D")
+    player.drop("E")
+    player.drop("F")
+    player.drop("G")
+
+    expect(board.column_a).to eq(['x','.','.','.','.','.'])
+    expect(board.column_b).to eq(['x','.','.','.','.','.'])
+    expect(board.column_c).to eq(['x','.','.','.','.','.'])
+    expect(board.column_d).to eq(['x','.','.','.','.','.'])
+    expect(board.column_e).to eq(['x','.','.','.','.','.'])
+    expect(board.column_f).to eq(['x','.','.','.','.','.'])
+    expect(board.column_g).to eq(['x','.','.','.','.','.'])
+
+    player.drop("D")
+
+    expect(board.column_d).to eq(['x','x','.','.','.','.'])
+  end
+
+
 end
