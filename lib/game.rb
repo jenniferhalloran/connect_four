@@ -1,7 +1,6 @@
 require './lib/player'
 require './lib/computer'
-## Not gonna lie, I don't get why we need these here...
-#
+
 class Game
 
 attr_reader :board, :player1, :computer, :turn
@@ -13,15 +12,30 @@ attr_reader :board, :player1, :computer, :turn
     @turn = "player1"
   end
 
-  def intro
+  def main_menu
     puts " "
     puts "Welcome to Jenn & Brad's Connect 4!"
-    puts "You're playing against the computer, you're 'x' and you get to go first!"
-    @board.print_board
-    start_turns
+    puts "Enter 'P' to play or 'Q' to quit!"
+    loop do
+      user_input = gets.upcase.strip
+      if user_input == "P"
+        start_turns
+        break
+      elsif user_input == "Q"
+        @player.quit
+      else
+        puts "Lets try that again, enter 'P' to play or 'Q' to quit"
+      end
+    end
   end
 
   def start_turns
+    puts "Yay, we hoped you would say that! You're now playing the computer and may go first... you're 'x'"
+    @board.print
+    take_turns
+  end
+
+  def take_turns
     loop {
       if @turn == "player1"
         @player1.turn
@@ -39,5 +53,4 @@ attr_reader :board, :player1, :computer, :turn
       @turn = "player1"
     end
   end
-
 end
