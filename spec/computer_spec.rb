@@ -23,7 +23,7 @@ end #Test that the computer has a board
     expect(computer.board.column_a).to eq(['.','.','.','.','.','.'])
   end
 
-  it "can select columns" do
+  it "can choose a column" do
     board = Board.new
     computer = Computer.new(board)
 
