@@ -99,5 +99,4 @@ end
     expect(board.column_b).to eq(['x','o','.','.','.','.'])
     expect(board.column_e).to eq(['x','x','o','.','.','.'])
   end
-
 end
