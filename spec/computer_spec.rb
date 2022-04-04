@@ -85,6 +85,19 @@ end
     expect(board.column_g).to eq(['o','o','.','.','.','.'])
   end
 
+  it "can drop an 'o' into a column where an 'x' already exist" do
+    board = Board.new
+    computer = Computer.new(board)
+    player = Player.new(board)
 
+    player.drop("B")
+    computer.drop("B")
+    player.drop("E")
+    player.drop("E")
+    computer.drop("E")
+
+    expect(board.column_b).to eq(['x','o','.','.','.','.'])
+    expect(board.column_e).to eq(['x','x','o','.','.','.'])
+  end
 
 end
