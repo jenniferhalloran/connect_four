@@ -9,10 +9,14 @@ attr_reader :board
     @board = board
   end
 
+  def choose_column #Turn was returning => "o", created new method to test that computer can choose a column
+    column_choice = @board.columns.sample
+  end
 
   def turn
+
     # sleep([0,1].sample)
-    column_choice = @board.columns.sample
+    column_choice
     validate_column(column_choice)
   end
 
