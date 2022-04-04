@@ -94,5 +94,18 @@ RSpec.describe Player do
     expect(board.column_d).to eq(['x','x','.','.','.','.'])
   end
 
+  it "can drop an 'x' into a column where an 'o' already exist" do
+    board = Board.new
+    computer = Computer.new(board)
+    player = Player.new(board)
 
+    computer.drop("C")
+    player.drop("C")
+    computer.drop("D")
+    computer.drop("D")
+    player.drop("D")
+
+    expect(board.column_c).to eq(['o','x','.','.','.','.'])
+    expect(board.column_d).to eq(['o','o','x','.','.','.'])
+  end
 end
