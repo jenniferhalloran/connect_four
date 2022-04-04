@@ -10,6 +10,7 @@ attr_reader :board, :player1, :computer, :turn
     @player1 = Player.new(@board)
     @computer = Computer.new(@board)
     @turn = "player1"
+    @turn_count = 0
   end
 
   def main_menu
@@ -31,12 +32,13 @@ attr_reader :board, :player1, :computer, :turn
 
   def start_turns
     puts "Yay, we hoped you would say that! You're now playing the computer and may go first... you're 'x'"
-    @board.print
+    @board.print_board
     take_turns
   end
 
   def take_turns
     loop {
+      turn_counter
       if @turn == "player1"
         @player1.turn
       else
@@ -51,6 +53,22 @@ attr_reader :board, :player1, :computer, :turn
       @turn = "computer"
     else
       @turn = "player1"
+    end
+  end
+
+  def turn_counter
+    @turn_count += 1
+    puts "turn # #{@turn_count}"
+  end
+
+  def board_full?
+    @turn_count == 42
+  end
+
+  def end_game
+    if board_full?
+      puts "It's a Draw!"
+      exit
     end
   end
 end
