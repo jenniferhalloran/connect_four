@@ -7,6 +7,7 @@ attr_reader :board
     @board = board
   end
 
+
   def turn
     column_choice = @board.columns.sample
     validate_column(column_choice)
@@ -42,6 +43,7 @@ attr_reader :board
   def drop(column_choice)
     if column_choice == "A"
       board.column_a[board.column_a.index(".")] = "o"
+      
     elsif column_choice == "B"
       board.column_b[board.column_b.index(".")] = "o"
 
