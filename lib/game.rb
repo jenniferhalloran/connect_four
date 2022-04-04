@@ -25,7 +25,6 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
       elsif user_input == "Q"
         puts "Sorry to see you go. If you change your mind, we might throw in a prize..."
         exit
-        #OR @player.quit but thought it would be fun to have a different response.
       else
         puts 'Hmmm, that wasn\'t an option. Lets try that again.. "P" to play or "Q" to quit.'
       end
@@ -75,6 +74,13 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
   end
 
 
+  # def vertical_win?
+  #   joined = @board.grid.select do |column|
+  #     column.join.include?("xxxx")
+  #   end
+  # end
+
+
   def check_end_game
     if full_board?
       puts "It's a draw! You almost got 'em, you should try again."
@@ -89,7 +95,7 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     puts 'Want to play again? Enter "Y". Otherwise enter any key to exit.'
     response = gets.upcase.strip
     if response == "Y"
-      puts 'Love that for you! Same rules as the last game - you\'re "x" and you go first.'
+      puts 'Love that for you'
       board = Board.new
       game= Game.new(board)
       board.print_board

@@ -6,15 +6,18 @@ attr_reader :board
   end
 
   def turn
-    # puts " "
-    puts "Please enter a column A - G to place your piece ... or enter Q to quit :("
-    get_user_choice
+    print_instruction
+    column_choice = get_user_choice
+    validate_input(column_choice)
   end
 
+  def print_instruction
+    puts "Please enter a column A - G to place your piece ... or enter Q to quit :("
+  end
 
   def get_user_choice
-    column_choice = gets.upcase.strip
-    validate_input(column_choice)
+    column = gets.chomp
+    column.upcase
   end
 
 

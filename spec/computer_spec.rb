@@ -34,13 +34,13 @@ end #Test that the computer has a board
   it "can change first empty index of every column to an 'o'" do
     board = Board.new
     computer = Computer.new(board)
-    computer.drop("a")
-    computer.drop("b")
-    computer.drop("c")
-    computer.drop("d")
-    computer.drop("e")
-    computer.drop("f")
-    computer.drop("g")
+    computer.drop("A")
+    computer.drop("B")
+    computer.drop("C")
+    computer.drop("D")
+    computer.drop("E")
+    computer.drop("F")
+    computer.drop("G")
 
     expect(board.column_a).to eq(['o','.','.','.','.','.'])
     expect(board.column_b).to eq(['o','.','.','.','.','.'])
@@ -50,7 +50,7 @@ end #Test that the computer has a board
     expect(board.column_f).to eq(['o','.','.','.','.','.'])
     expect(board.column_g).to eq(['o','.','.','.','.','.'])
 
-    computer.drop("g")
+    computer.drop("G")
 
     expect(board.column_g).to eq(['o','o','.','.','.','.'])
   end # Test the computer can add an "o" to the board
