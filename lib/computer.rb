@@ -47,19 +47,19 @@ attr_reader :board
 
   def drop(column_choice)
     if column_choice == "A"
-      board.column_a[board.column_a.index(".")] = "o"
+      @board.column_a[board.column_a.index(".")] = "o"
     elsif column_choice == "B"
-      board.column_b[board.column_b.index(".")] = "o"
+      @board.column_b[board.column_b.index(".")] = "o"
     elsif column_choice == "C"
-      board.column_c[board.column_c.index(".")] = "o"
+      @board.column_c[board.column_c.index(".")] = "o"
     elsif column_choice == "D"
-      board.column_d[board.column_d.index(".")] = "o"
+      @board.column_d[board.column_d.index(".")] = "o"
     elsif column_choice == "E"
-      board.column_e[board.column_e.index(".")] = "o"
+      @board.column_e[board.column_e.index(".")] = "o"
     elsif column_choice == "F"
-      board.column_f[board.column_f.index(".")] = "o"
+      @board.column_f[board.column_f.index(".")] = "o"
     elsif column_choice == "G"
-      board.column_g[board.column_g.index(".")] = "o"
+      @board.column_g[board.column_g.index(".")] = "o"
     end
   @board.print_board
   end
