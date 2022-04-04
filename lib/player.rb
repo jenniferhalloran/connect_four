@@ -1,3 +1,5 @@
+require './lib/game'
+
 class Player
 attr_reader :board
 
@@ -20,7 +22,7 @@ attr_reader :board
   def give_response(column_choice)
     if valid_input?(column_choice) && !available_column?(column_choice)
       @board.print_board
-      puts "That column is full, lets try that again."
+      p "That column is full, lets try that again."
       puts " "
     elsif column_choice == "Q"
       quit
@@ -44,53 +46,25 @@ attr_reader :board
   def valid_input?(column_choice)
     @board.columns.include?(column_choice)
   end
-  #
-  #   if @board.columns.include?(column_choice)
-  #     validate_column(column_choice)
-  #   elsif column_choice == "Q"
-  #     quit
-  #   else
-  #     puts " "
-  #     @board.print_board
-  #     puts "Silly goose, that's not a column! Try again."
-  #     turn
-  #     ##would it be better practice to put this in a invalid_column method?
-  #   end
-  # end
 
 
-# => I want to move this to game class
   def available_column?(column_choice)
     if column_choice == "A"
-      board.column_a.include?(".")
+      @board.column_a.include?(".")
     elsif column_choice == "B"
-      board.column_b.include?(".")
+      @board.column_b.include?(".")
     elsif column_choice == "C"
-      board.column_c.include?(".")
+      @board.column_c.include?(".")
     elsif column_choice == "D"
-      board.column_d.include?(".")
+      @board.column_d.include?(".")
     elsif column_choice == "E"
-      board.column_e.include?(".")
+      @board.column_e.include?(".")
     elsif column_choice == "F"
-      board.column_f.include?(".")
+      @board.column_f.include?(".")
     elsif column_choice == "G"
-      board.column_g.include?(".")
+      @board.column_g.include?(".")
     end
   end
-
-
-  # def validate_column(column_choice)
-  #   if available_column?(column_choice)
-  #     drop(column_choice)
-  #   else
-  #     # until valid_column?(column_choice) do
-  #     @board.print_board
-  #     puts "That column is full, lets try that again."
-  #     puts " "
-  #     # end
-  #   end
-  # end
-
 
 
   def drop(column_choice)
@@ -109,16 +83,11 @@ attr_reader :board
     elsif column_choice == "G"
       @board.column_g[board.column_g.index(".")] = "x"
     end
-    # @board.print_board
   end
-
   ##I would love to refactor this to be shorter and not have to if/else through each input
   # @columns.each do |column|
   #   if column == get_user_choice
   #   board.column[board.column.index(".")] = "x"
   #   end
   # end
-
-
-
 end

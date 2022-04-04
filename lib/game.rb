@@ -9,6 +9,7 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     @player1 = Player.new(@board)
     @computer = Computer.new(@board)
     @turn = "player1"
+    @turn_win = "xxxx"
     @turn_count = 0
   end
 
@@ -40,7 +41,6 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
   def initial_turn
     puts " "
     puts "Yay! We hoped you would say that. You're playing against the computer, you're 'x' and you get to go first!"
-    # @board.print_board
   end
 
 
@@ -62,8 +62,10 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
   def switch
     if @turn == "player1"
       @turn = "computer"
+      @turn_win = "oooo"
     else
       @turn = "player1"
+      @turn_win = "xxxx"
     end
   end
 
@@ -78,36 +80,58 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     @turn_count == 42
   end
 
+  def horizontal_win?
+    win_check = @board.grid.select do |column|
+          column.join.include?(@turn_win)
+        end
+        !win_check.empty?
+  end
 
-  # def vertical_win?
-  #   joined = @board.grid.select do |column|
-  #     column.join.include?("xxxx")
-  #   end
-  # end
-
+  def vertical_win?
+    win_check = @board.grid.transpose.select do |column|
+          column.join.include?(@turn_win)
+        end
+        !win_check.empty?
+  end
 
   def check_end_game
     if full_board?
+      @board.print_board
       puts "It's a draw! You almost got 'em, you should try again."
       replay
-    else
-      ##will have win methods here
+    elsif horizontal_win? || vertical_win? # || diagonal_win
+      @board.print_board
+      declare_winner
     end
   end
 
+  def declare_winner
+    if @turn == "player1"
+      puts "You won! Great job!"
+      puts " "
+      replay
+    else
+      puts "The computer won. Nice try!"
+      replay
+    end
+  end
 
   def replay
     puts 'Want to play again? Enter "Y". Otherwise enter any key to exit.'
     response = gets.upcase.strip
     if response == "Y"
-      puts 'Love that for you'
-      board = Board.new
-      game= Game.new(board)
-      game.main_menu
+      start_new_game
     else
       quit
     end
   end
+end
+
+def start_new_game
+  puts 'Love that for you'
+  board = Board.new
+  game= Game.new(board)
+  game.main_menu
 end
 
 

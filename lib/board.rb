@@ -11,7 +11,6 @@ class Board
       ['.','.','.','.','.','.'], # = column F
       ['.','.','.','.','.','.']  # = column G
     ]
-    # => I think we should make a column class?
     @column_a = @grid[0]
     @column_b = @grid[1]
     @column_c = @grid[2]

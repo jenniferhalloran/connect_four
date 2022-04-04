@@ -1,4 +1,5 @@
 require './lib/board'
+require './lib/game'
 require 'pry'
 
 class Computer
@@ -13,14 +14,15 @@ attr_reader :board
   end
 
   def turn
-    #sleep([0,1].sample) #not trying to make the instructors sit there forever testing our project
+
+    # sleep([0,1].sample)
     column_choice
     validate_column(column_choice)
   end
 
 
   def validate_column(column_choice)
-    if valid_column?(column_choice)
+    if available_column?(column_choice)
       puts "The computer chose column #{column_choice}."
       drop(column_choice)
     else
@@ -28,8 +30,8 @@ attr_reader :board
     end
   end
 
-  ##Want to move this to game class
-  def valid_column?(column_choice)
+
+  def available_column?(column_choice)
     if column_choice == "A"
       @board.column_a.include?(".")
     elsif column_choice == "B"
@@ -64,7 +66,6 @@ attr_reader :board
     elsif column_choice == "G"
       @board.column_g[board.column_g.index(".")] = "o"
     end
-  # @board.print_board
   end
 
 end
