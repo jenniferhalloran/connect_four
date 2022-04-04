@@ -26,6 +26,13 @@ RSpec.describe Player do
   expect(player.board.column_a).to eq(['.','.','.','.','.','.'])
   end
 
+  it "tells the player invalid column if they don't respond with A-G" do
+    board = Board.new
+    player = Player.new(board)
+
+    expect(player.give_response("p")).to eq("Silly goose, that's not a column! Try again.")
+  end
+
   it "can choose a column" do
     board = Board.new
     computer = Computer.new(board)
@@ -61,13 +68,6 @@ RSpec.describe Player do
     expect(player.board.column_e).to eq(['x','.','.','.','.','.'])
     expect(player.board.column_f).to eq(['x','.','.','.','.','.'])
     expect(player.board.column_g).to eq(['x','.','.','.','.','.'])
-  end
-
-  it "tells the player invalid column if they don't respond with A-G" do
-    board = Board.new
-    player = Player.new(board)
-
-    expect(player.give_response("p")).to eq("Silly goose, that's not a column! Try again.")
   end
 
 end
