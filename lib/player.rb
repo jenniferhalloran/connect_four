@@ -3,20 +3,22 @@ attr_reader :board
 
   def initialize(board)
     @board = board
-    @valid = false
   end
 
   def turn
     print_instruction
     column_choice = get_user_choice
-    until valid_input?(column_choice) && available_column?(column_choice)
-    give_response(column_choice)
-    drop(column_choice)
+    if valid_input?(column_choice) && available_column?(column_choice)
+      drop(column_choice)
+    else
+      give_response(column_choice)
+      turn
+    end
   end
 
 
   def give_response(column_choice)
-    if !available_column?(column_choice)
+    if valid_input?(column_choice) && !available_column?(column_choice)
       @board.print_board
       puts "That column is full, lets try that again."
       puts " "
@@ -24,9 +26,7 @@ attr_reader :board
       quit
     else
       puts " "
-      @board.print_board
-      puts "Silly goose, that's not a column! Try again."
-      end
+      p "Silly goose, that's not a column! Try again."
     end
   end
 
@@ -109,7 +109,7 @@ attr_reader :board
     elsif column_choice == "G"
       @board.column_g[board.column_g.index(".")] = "x"
     end
-    @board.print_board
+    # @board.print_board
   end
 
   ##I would love to refactor this to be shorter and not have to if/else through each input

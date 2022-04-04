@@ -14,9 +14,7 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
 
 
   def main_menu
-    puts " "
-    puts "Welcome to Jenn & Brad's Connect 4!"
-    puts 'Enter "P" to play. Unless you\'re a quitter. Then enter "Q".'
+    welcome_message
     loop do
       user_input = gets.upcase.strip
       if user_input == "P"
@@ -32,16 +30,23 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     end
   end
 
+  def welcome_message
+    puts " "
+    puts "Welcome to Jenn & Brad's Connect 4!"
+    puts 'Enter "P" to play. Unless you\'re a quitter. Then enter "Q".'
+  end
+
 
   def initial_turn
     puts " "
     puts "Yay! We hoped you would say that. You're playing against the computer, you're 'x' and you get to go first!"
-    @board.print_board
+    # @board.print_board
   end
 
 
   def take_turns
     loop {
+      @board.print_board
       turn_counter
       if @turn == "player1"
         @player1.turn
@@ -98,7 +103,6 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
       puts 'Love that for you'
       board = Board.new
       game= Game.new(board)
-      board.print_board
       game.main_menu
     else
       quit

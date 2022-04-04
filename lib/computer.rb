@@ -61,7 +61,7 @@ attr_reader :board
     elsif column_choice == "G"
       @board.column_g[board.column_g.index(".")] = "o"
     end
-  @board.print_board
+  # @board.print_board
   end
 
 end

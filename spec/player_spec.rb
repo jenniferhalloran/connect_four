@@ -53,7 +53,7 @@ RSpec.describe Player do
     board = Board.new
     player = Player.new(board)
 
-    expect(player.validate_input("p")).to eq("Silly goose, that's not a column! Try again.")
+    expect(player.give_response("p")).to eq("Silly goose, that's not a column! Try again.")
   end
 
 end
