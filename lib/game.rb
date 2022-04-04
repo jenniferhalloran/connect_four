@@ -21,6 +21,7 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
       user_input = gets.upcase.strip
       if user_input == "P"
         initial_turn
+        take_turns
         break
       elsif user_input == "Q"
         puts "Sorry to see you go. If you change your mind, we might throw in a prize..."
@@ -36,7 +37,6 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     puts " "
     puts "Yay! We hoped you would say that. You're playing against the computer, you're 'x' and you get to go first!"
     @board.print_board
-    take_turns
   end
 
 
