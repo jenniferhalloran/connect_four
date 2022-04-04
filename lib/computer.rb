@@ -58,8 +58,6 @@ attr_reader :board
       board.column_e[board.column_e.index(".")] = "o"
     elsif column_choice == "F"
       board.column_f[board.column_f.index(".")] = "o"
-    elsif column_choice == "F"
-      board.column_g[board.column_g.index(".")] = "o"
     elsif column_choice == "G"
       board.column_g[board.column_g.index(".")] = "o"
     end

@@ -92,6 +92,7 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
       puts 'Love that for you! Same rules as the last game - you\'re "x" and you go first.'
       board = Board.new
       game= Game.new(board)
+      board.print_board
       game.main_menu
     else
       quit

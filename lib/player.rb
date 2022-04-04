@@ -69,12 +69,6 @@ attr_reader :board
 
 
   def drop(column_choice)
-    ##I would love to refactor this to be shorter and not have to if/else through each input
-    # @columns.each do |column|
-    #   if column == get_user_choice
-    #   board.column[board.column.index(".")] = "x"
-    #   end
-    # end
     if column_choice == "A"
       board.column_a[board.column_a.index(".")] = "x"
     elsif column_choice == "B"
@@ -90,17 +84,15 @@ attr_reader :board
     elsif column_choice == "G"
       board.column_g[board.column_g.index(".")] = "x"
     end
-
     @board.print_board
   end
-
-  #This should also be in the game class
-  # def quit
-  #   puts " "
-  #   puts "Fine, we'll find someone else to play with. CYA!"
-  #   puts " "
-  #   exit
+  ##I would love to refactor this to be shorter and not have to if/else through each input
+  # @columns.each do |column|
+  #   if column == get_user_choice
+  #   board.column[board.column.index(".")] = "x"
+  #   end
   # end
+
 
 
 end
