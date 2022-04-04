@@ -42,6 +42,8 @@ RSpec.describe Player do
     column = $stdin.gets
 
   expect(column).to eq('A')
+
+  expect(player.available_column?(column)).to eq(true)
   end
 
   it "can validate columns" do
