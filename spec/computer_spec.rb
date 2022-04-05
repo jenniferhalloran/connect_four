@@ -34,7 +34,7 @@ end
     board = Board.new
     computer = Computer.new(board)
 
-  expect(computer.valid_column?("D")).to eq(true)
+  expect(computer.available_column?("D")).to eq(true)
   end
 
   it "can drop an 'o' on the board" do
