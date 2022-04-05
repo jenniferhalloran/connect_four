@@ -14,9 +14,8 @@ attr_reader :board
   end
 
   def turn
-
     # sleep([0,1].sample)
-    column_choice
+    column_choice = @board.columns.sample
     validate_column(column_choice)
   end
 
