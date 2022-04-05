@@ -94,12 +94,32 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
         !win_check.empty?
   end
 
+  def diagonal_win?
+    possible_diagonals = [
+    [@board.grid[3][0], @board.grid[4][1], @board.grid[5][2], @board.grid[6][3]],
+    [@board.grid[2][0], @board.grid[3][1], @board.grid[4][2], @board.grid[5][3], @board.grid[6][4]],
+    [@board.grid[1][0], @board.grid[2][1], @board.grid[3][2], @board.grid[4][3], @board.grid[5][4], @board.grid[6][5]],
+    [@board.grid[0][0], @board.grid[1][1], @board.grid[2][2], @board.grid[3][3], @board.grid[4][4], @board.grid[5][5]],
+    [@board.grid[0][1], @board.grid[1][2], @board.grid[2][3], @board.grid[3][4], @board.grid[4][5]],
+    [@board.grid[0][2], @board.grid[1][3], @board.grid[2][4], @board.grid[3][5]]
+    ]
+    win_check_left = possible_diagonals.select do |column|
+      column.join.include?(@turn_win)
+    end
+
+    win_check_right = possible_diagonals.reverse.select do |column|
+      column.join.include?(@turn_win)
+    end
+
+    !win_check_left.empty? || !win_check_right.empty?
+  end
+
   def check_end_game
     if full_board?
       @board.print_board
       puts "It's a draw! You almost got 'em, you should try again."
       replay
-    elsif horizontal_win? || vertical_win? # || diagonal_win
+    elsif horizontal_win? || vertical_win? || diagonal_win?
       @board.print_board
       declare_winner
     end
@@ -130,7 +150,7 @@ end
 def start_new_game
   puts 'Love that for you'
   board = Board.new
-  game= Game.new(board)
+  game = Game.new(board)
   game.main_menu
 end
 
