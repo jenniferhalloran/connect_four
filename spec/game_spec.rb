@@ -50,14 +50,86 @@ RSpec.describe Game do
     expect(game.turn).to eq("computer")
   end
 
-  it "exits the game when player enters 'Q'" do
+  it "can check vertical win for player" do
     board = Board.new
     game = Game.new(board)
+    player = Player.new(board)
 
-  allow($stdin).to receive(:gets).and_return("Q")
-    user_input = $stdin.gets
+    player.drop("A")
+    player.drop("A")
+    player.drop("A")
+    player.drop("A")
 
-  expect(user_input).to eq("Q")
-  expect{game.welcome_message}.to eq(quit)
+    expect(game.vertical_win?).to eq(true)
+    expect(game.declare_winner).to eq("player1")
   end
+
+  it "can check vertical win for computer" do
+    board = Board.new
+    game = Game.new(board)
+    computer = Computer.new(board)
+
+    computer.drop("A")
+    computer.drop("A")
+    computer.drop("A")
+    computer.drop("A")
+
+    expect(game.vertical_win?).to eq(true)
+    expect(game.declare_winner).to eq("computer")
+
+  end
+
+  it "can check for horizontal win for player" do
+    board = Board.new
+    game = Game.new(board)
+    player = Player.new(board)
+
+    player.drop("B")
+    player.drop("C")
+    player.drop("D")
+    player.drop("E")
+
+    expect(game.horizontal_win?).to eq(true)
+    expect(game.declare_winner).to eq("player1")
+  end
+
+  it "can check for horizontal win for computer" do
+    board = Board.new
+    game = Game.new(board)
+    computer = Computer.new(board)
+
+    computer.drop("B")
+    computer.drop("C")
+    computer.drop("D")
+    computer.drop("E")
+
+    expect(game.horizontal_win?).to eq(true)
+    expect(game.declare_winner).to eq("computer")
+
+  end
+
+  xit "can check diagonal_win for player" do
+    board = Board.new
+    game = Game.new(board)
+    computer = Computer.new(board)
+    player = Player.new(board)
+
+    computer.drop("E")
+    player.drop("A")
+    computer.drop("B")
+    player.drop("D")
+    computer.drop("C")
+    player.drop("B")
+    computer.drop("D")
+    player.drop("C")
+    computer.drop("D")
+    player.drop("C")
+    computer.drop("E")
+    player.drop("D")
+
+    expect(game.declare_winner).to eq("player1")
+    expect(game.check_diagonal?).to eq(true)
+  end
+
+
 end
