@@ -12,14 +12,9 @@ RSpec.describe Game do
     expect(game).to be_an_instance_of(Game)
   end
 
-  it "prints a welcome message when player enters 'P'" do
+  it "prints a welcome message" do
     board = Board.new
     game = Game.new(board)
-
-  allow($stdin).to receive(:gets).and_return("P")
-    user_input = $stdin.gets
-
-  expect(user_input).to eq("P")
 
   expect{game.welcome_message}.to output(" \nWelcome to Jenn & Brad's Connect 4!\nEnter \"P\" to play. Unless you're a quitter. Then enter \"Q\".\n").to_stdout
   end
@@ -50,7 +45,7 @@ RSpec.describe Game do
     expect(game.turn).to eq("computer")
   end
 
-  it "can check vertical win for player" do
+  xit "can check vertical win for player" do
     board = Board.new
     game = Game.new(board)
     player = Player.new(board)
@@ -64,10 +59,12 @@ RSpec.describe Game do
     expect(game.declare_winner).to eq("player1")
   end
 
-  it "can check vertical win for computer" do
+  xit "can check vertical win for computer" do
     board = Board.new
     game = Game.new(board)
     computer = Computer.new(board)
+
+    game.switch
 
     computer.drop("A")
     computer.drop("A")
@@ -79,7 +76,7 @@ RSpec.describe Game do
 
   end
 
-  it "can check for horizontal win for player" do
+  xit "can check for horizontal win for player" do
     board = Board.new
     game = Game.new(board)
     player = Player.new(board)
@@ -93,10 +90,12 @@ RSpec.describe Game do
     expect(game.declare_winner).to eq("player1")
   end
 
-  it "can check for horizontal win for computer" do
+  xit "can check for horizontal win for computer" do
     board = Board.new
     game = Game.new(board)
     computer = Computer.new(board)
+
+    game.switch
 
     computer.drop("B")
     computer.drop("C")
@@ -108,7 +107,7 @@ RSpec.describe Game do
 
   end
 
-  xit "can check diagonal_win for player" do
+  it "can check diagonal_win for player" do
     board = Board.new
     game = Game.new(board)
     computer = Computer.new(board)
@@ -130,6 +129,4 @@ RSpec.describe Game do
     expect(game.declare_winner).to eq("player1")
     expect(game.check_diagonal?).to eq(true)
   end
-
-
 end
