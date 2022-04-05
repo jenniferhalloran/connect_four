@@ -45,7 +45,7 @@ RSpec.describe Game do
     expect(game.turn).to eq("computer")
   end
 
-  xit "can check vertical win for player" do
+  it "can check vertical win for player" do
     board = Board.new
     game = Game.new(board)
     player = Player.new(board)
@@ -56,10 +56,10 @@ RSpec.describe Game do
     player.drop("A")
 
     expect(game.vertical_win?).to eq(true)
-    expect(game.declare_winner).to eq("player1")
+    expect(game.turn).to eq("player1")
   end
 
-  xit "can check vertical win for computer" do
+  it "can check vertical win for computer" do
     board = Board.new
     game = Game.new(board)
     computer = Computer.new(board)
@@ -72,11 +72,11 @@ RSpec.describe Game do
     computer.drop("A")
 
     expect(game.vertical_win?).to eq(true)
-    expect(game.declare_winner).to eq("computer")
+    expect(game.turn).to eq("computer")
 
   end
 
-  xit "can check for horizontal win for player" do
+  it "can check for horizontal win for player" do
     board = Board.new
     game = Game.new(board)
     player = Player.new(board)
@@ -87,10 +87,10 @@ RSpec.describe Game do
     player.drop("E")
 
     expect(game.horizontal_win?).to eq(true)
-    expect(game.declare_winner).to eq("player1")
+    expect(game.turn).to eq("player1")
   end
 
-  xit "can check for horizontal win for computer" do
+  it "can check for horizontal win for computer" do
     board = Board.new
     game = Game.new(board)
     computer = Computer.new(board)
@@ -103,7 +103,7 @@ RSpec.describe Game do
     computer.drop("E")
 
     expect(game.horizontal_win?).to eq(true)
-    expect(game.declare_winner).to eq("computer")
+    expect(game.turn).to eq("computer")
 
   end
 
@@ -114,19 +114,30 @@ RSpec.describe Game do
     player = Player.new(board)
 
     computer.drop("E")
+    game.switch
     player.drop("A")
+    game.switch
     computer.drop("B")
+    game.switch
     player.drop("D")
+    game.switch
     computer.drop("C")
+    game.switch
     player.drop("B")
+    game.switch
     computer.drop("D")
+    game.switch
     player.drop("C")
+    game.switch
     computer.drop("D")
+    game.switch
     player.drop("C")
+    game.switch
     computer.drop("E")
+    game.switch
     player.drop("D")
 
-    expect(game.declare_winner).to eq("player1")
-    expect(game.check_diagonal?).to eq(true)
+    expect(game.diagonal_win?).to eq(true)
+    expect(game.turn?).to eq("player1")
   end
 end
