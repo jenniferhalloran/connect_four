@@ -12,14 +12,9 @@ RSpec.describe Game do
     expect(game).to be_an_instance_of(Game)
   end
 
-  it "prints a welcome message when player enters 'P'" do
+  it "prints a welcome message" do
     board = Board.new
     game = Game.new(board)
-
-  allow($stdin).to receive(:gets).and_return("P")
-    user_input = $stdin.gets
-
-  expect(user_input).to eq("P")
 
   expect{game.welcome_message}.to output(" \nWelcome to Jenn & Brad's Connect 4!\nEnter \"P\" to play. Unless you're a quitter. Then enter \"Q\".\n").to_stdout
   end
@@ -50,14 +45,88 @@ RSpec.describe Game do
     expect(game.turn).to eq("computer")
   end
 
-  it "exits the game when player enters 'Q'" do
+  xit "can check vertical win for player" do
     board = Board.new
     game = Game.new(board)
+    player = Player.new(board)
 
-  allow($stdin).to receive(:gets).and_return("Q")
-    user_input = $stdin.gets
+    player.drop("A")
+    player.drop("A")
+    player.drop("A")
+    player.drop("A")
 
-  expect(user_input).to eq("Q")
-  expect{game.welcome_message}.to eq(quit)
+    expect(game.vertical_win?).to eq(true)
+    expect(game.declare_winner).to eq("player1")
+  end
+
+  xit "can check vertical win for computer" do
+    board = Board.new
+    game = Game.new(board)
+    computer = Computer.new(board)
+
+    game.switch
+
+    computer.drop("A")
+    computer.drop("A")
+    computer.drop("A")
+    computer.drop("A")
+
+    expect(game.vertical_win?).to eq(true)
+    expect(game.declare_winner).to eq("computer")
+
+  end
+
+  xit "can check for horizontal win for player" do
+    board = Board.new
+    game = Game.new(board)
+    player = Player.new(board)
+
+    player.drop("B")
+    player.drop("C")
+    player.drop("D")
+    player.drop("E")
+
+    expect(game.horizontal_win?).to eq(true)
+    expect(game.declare_winner).to eq("player1")
+  end
+
+  xit "can check for horizontal win for computer" do
+    board = Board.new
+    game = Game.new(board)
+    computer = Computer.new(board)
+
+    game.switch
+
+    computer.drop("B")
+    computer.drop("C")
+    computer.drop("D")
+    computer.drop("E")
+
+    expect(game.horizontal_win?).to eq(true)
+    expect(game.declare_winner).to eq("computer")
+
+  end
+
+  it "can check diagonal_win for player" do
+    board = Board.new
+    game = Game.new(board)
+    computer = Computer.new(board)
+    player = Player.new(board)
+
+    computer.drop("E")
+    player.drop("A")
+    computer.drop("B")
+    player.drop("D")
+    computer.drop("C")
+    player.drop("B")
+    computer.drop("D")
+    player.drop("C")
+    computer.drop("D")
+    player.drop("C")
+    computer.drop("E")
+    player.drop("D")
+
+    expect(game.declare_winner).to eq("player1")
+    expect(game.check_diagonal?).to eq(true)
   end
 end

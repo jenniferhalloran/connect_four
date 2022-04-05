@@ -80,14 +80,14 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     @turn_count == 42
   end
 
-  def horizontal_win?
+  def vertical_win?
     win_check = @board.grid.select do |column|
           column.join.include?(@turn_win)
         end
         !win_check.empty?
   end
 
-  def vertical_win?
+  def horizontal_win?
     win_check = @board.grid.transpose.select do |column|
           column.join.include?(@turn_win)
         end
