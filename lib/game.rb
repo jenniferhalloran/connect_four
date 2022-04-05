@@ -2,7 +2,7 @@ require './lib/player'
 require './lib/computer'
 
 class Game
-attr_reader :board, :player1, :computer, :turn, :turn_count
+attr_reader :board, :player1, :computer, :turn, :turn_count, :turn_win
 
   def initialize(board)
     @board = board
@@ -12,7 +12,6 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     @turn_win = "xxxx"
     @turn_count = 0
   end
-
 
   def main_menu
     welcome_message
@@ -37,17 +36,16 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     puts 'Enter "P" to play. Unless you\'re a quitter. Then enter "Q".'
   end
 
-
   def initial_turn
     puts " "
     puts "Yay! We hoped you would say that. You're playing against the computer, you're 'x' and you get to go first!"
   end
 
-
   def take_turns
     loop {
       @board.print_board
       turn_counter
+      puts "Turn ##{@turn_count}."
       if @turn == "player1"
         @player1.turn
       else
@@ -57,7 +55,6 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
       switch
     }
   end
-
 
   def switch
     if @turn == "player1"
@@ -69,29 +66,26 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     end
   end
 
-
   def turn_counter
     @turn_count += 1
-    puts "Turn ##{@turn_count}."
   end
-
 
   def full_board?
     @turn_count == 42
   end
 
   def vertical_win?
-    win_check = @board.grid.select do |column|
+    vertical_check = @board.grid.select do |column|
           column.join.include?(@turn_win)
-        end
-        !win_check.empty?
+    end
+    !vertical_check.empty?
   end
 
   def horizontal_win?
-    win_check = @board.grid.transpose.select do |column|
+    horizontal_check = @board.grid.transpose.select do |column|
           column.join.include?(@turn_win)
-        end
-        !win_check.empty?
+    end
+    !horizontal_check.empty?
   end
 
   def diagonal_win?
@@ -101,17 +95,18 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     [@board.grid[1][0], @board.grid[2][1], @board.grid[3][2], @board.grid[4][3], @board.grid[5][4], @board.grid[6][5]],
     [@board.grid[0][0], @board.grid[1][1], @board.grid[2][2], @board.grid[3][3], @board.grid[4][4], @board.grid[5][5]],
     [@board.grid[0][1], @board.grid[1][2], @board.grid[2][3], @board.grid[3][4], @board.grid[4][5]],
-    [@board.grid[0][2], @board.grid[1][3], @board.grid[2][4], @board.grid[3][5]]
+    [@board.grid[0][2], @board.grid[1][3], @board.grid[2][4], @board.grid[3][5]],
+    [@board.grid[0][3], @board.grid[1][2], @board.grid[2][1], @board.grid[3][0]],
+    [@board.grid[0][4], @board.grid[1][3], @board.grid[2][2], @board.grid[3][1], @board.grid[4][0]],
+    [@board.grid[0][5], @board.grid[1][4], @board.grid[2][3], @board.grid[3][2], @board.grid[4][1], @board.grid[5][0]],
+    [@board.grid[1][5], @board.grid[2][4], @board.grid[3][3], @board.grid[4][2], @board.grid[5][1], @board.grid[6][0]],
+    [@board.grid[2][5], @board.grid[3][4], @board.grid[4][3], @board.grid[5][2], @board.grid[6][1]],
+    [@board.grid[3][5], @board.grid[4][4], @board.grid[5][4], @board.grid[6][2]]
     ]
-    win_check_left = possible_diagonals.select do |column|
+    diagonal_check = possible_diagonals.select do |column|
       column.join.include?(@turn_win)
     end
-
-    win_check_right = possible_diagonals.reverse.select do |column|
-      column.join.include?(@turn_win)
-    end
-
-    !win_check_left.empty? || !win_check_right.empty?
+    !diagonal_check.empty?
   end
 
   def check_end_game
@@ -122,6 +117,7 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     elsif horizontal_win? || vertical_win? || diagonal_win?
       @board.print_board
       declare_winner
+      replay
     end
   end
 
@@ -129,10 +125,8 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
     if @turn == "player1"
       puts "You won! Great job!"
       puts " "
-      replay
     else
       puts "The computer won. Nice try!"
-      replay
     end
   end
 
@@ -145,19 +139,18 @@ attr_reader :board, :player1, :computer, :turn, :turn_count
       quit
     end
   end
-end
 
-def start_new_game
-  puts 'Love that for you'
-  board = Board.new
-  game = Game.new(board)
-  game.main_menu
-end
+  def start_new_game
+    puts 'Love that for you'
+    board = Board.new
+    game = Game.new(board)
+    game.main_menu
+  end
 
-
-def quit
-  puts " "
-  puts "Fine, we'll find someone else to play with. CYA!"
-  puts " "
-  exit
+  def quit
+    puts " "
+    puts "Fine, we'll find someone else to play with. CYA!"
+    puts " "
+    exit
+  end
 end
