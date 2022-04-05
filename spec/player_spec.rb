@@ -16,21 +16,22 @@ RSpec.describe Player do
     board = Board.new
     player = Player.new(board)
 
-  expect(player.board).to eq(board)
+    expect(player.board).to eq(board)
   end
 
   it "can access columns from the board" do
     board = Board.new
     player = Player.new(board)
 
-  expect(player.board.column_a).to eq(['.','.','.','.','.','.'])
+    expect(player.board.column_a).to eq(['.','.','.','.','.','.'])
   end
 
   it "tells the player invalid column if they don't respond with A-G" do
     board = Board.new
     player = Player.new(board)
+    column_choice = "p"
 
-    expect(player.give_response("p")).to eq("Silly goose, that's not a column! Try again.")
+    expect(player.valid_input?(column_choice)).to eq(false)
   end
 
   it "can choose a column" do
@@ -38,19 +39,27 @@ RSpec.describe Player do
     computer = Computer.new(board)
     player = Player.new(board)
 
-  allow($stdin).to receive(:gets).and_return('A')
+    allow($stdin).to receive(:gets).and_return('A')
     column = $stdin.gets
 
-  expect(column).to eq('A')
+    expect(column).to eq('A')
 
-  expect(player.available_column?(column)).to eq(true)
+    expect(player.available_column?(column)).to eq(true)
   end
 
   it "can validate columns" do
     board = Board.new
     player = Player.new(board)
-  expect(player.available_column?("D")).to eq(true)
-  end
+    player.drop("E")
+    player.drop("E")
+    player.drop("E")
+    player.drop("E")
+    player.drop("E")
+    player.drop("E")
+
+    expect(player.available_column?("D")).to eq(true)
+    expect(player.available_column?("E")).to eq(false)
+    end
 
   it "can drop an 'x' on the board" do
     board = Board.new

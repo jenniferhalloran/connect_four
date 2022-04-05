@@ -9,9 +9,8 @@ attr_reader :board
     @board = board
   end
 
-
   def turn
-    column_choice = @board.columns.sample
+    column_choice = choose_column
     if available_column?(column_choice)
       puts "The computer chose column #{column_choice}."
       drop(column_choice)
@@ -20,11 +19,9 @@ attr_reader :board
     end
   end
 
-
   def choose_column
-    column_choice = @board.columns.sample
+    @board.columns.sample
   end
-
 
   def available_column?(column_choice)
     if column_choice == "A"
@@ -43,7 +40,6 @@ attr_reader :board
       @board.column_g.include?(".")
     end
   end
-
 
   def drop(column_choice)
     if column_choice == "A"

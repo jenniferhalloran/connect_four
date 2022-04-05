@@ -16,7 +16,7 @@ RSpec.describe Game do
     board = Board.new
     game = Game.new(board)
 
-  expect{game.welcome_message}.to output(" \nWelcome to Jenn & Brad's Connect 4!\nEnter \"P\" to play. Unless you're a quitter. Then enter \"Q\".\n").to_stdout
+    expect{game.welcome_message}.to output(" \nWelcome to Jenn & Brad's Connect 4!\nEnter \"P\" to play. Unless you're a quitter. Then enter \"Q\".\n").to_stdout
   end
 
   it "can access columns from the board" do
@@ -45,6 +45,16 @@ RSpec.describe Game do
     expect(game.turn).to eq("computer")
   end
 
+  it "can determine if the column is full" do
+    board = Board.new
+    game = Game.new(board)
+
+    42.times {game.turn_counter}
+
+    expect(game.turn_count).to eq(42)
+    expect(game.full_board?).to eq(true)
+  end
+
   it "can check vertical win for player" do
     board = Board.new
     game = Game.new(board)
@@ -65,7 +75,6 @@ RSpec.describe Game do
     computer = Computer.new(board)
 
     game.switch
-
     computer.drop("A")
     computer.drop("A")
     computer.drop("A")
@@ -96,7 +105,6 @@ RSpec.describe Game do
     computer = Computer.new(board)
 
     game.switch
-
     computer.drop("B")
     computer.drop("C")
     computer.drop("D")
@@ -113,6 +121,7 @@ RSpec.describe Game do
     computer = Computer.new(board)
     player = Player.new(board)
 
+    game.switch
     computer.drop("E")
     game.switch
     player.drop("A")
@@ -137,7 +146,8 @@ RSpec.describe Game do
     game.switch
     player.drop("D")
 
+    expect(game.turn_win).to eq("xxxx")
     expect(game.diagonal_win?).to eq(true)
-    expect(game.turn?).to eq("player1")
+    expect(game.turn).to eq("player1")
   end
 end

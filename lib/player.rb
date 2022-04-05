@@ -18,7 +18,6 @@ attr_reader :board
     end
   end
 
-
   def give_response(column_choice)
     if valid_input?(column_choice) && !available_column?(column_choice)
       @board.print_board
@@ -32,21 +31,17 @@ attr_reader :board
     end
   end
 
-
   def print_instruction
     puts "Please enter a column A - G to place your piece ... or enter Q to quit :("
   end
 
-
   def get_user_choice
-    column = gets.strip.upcase
+    gets.strip.upcase
   end
-
 
   def valid_input?(column_choice)
     @board.columns.include?(column_choice)
   end
-
 
   def available_column?(column_choice)
     if column_choice == "A"
@@ -65,7 +60,6 @@ attr_reader :board
       @board.column_g.include?(".")
     end
   end
-
 
   def drop(column_choice)
     if column_choice == "A"

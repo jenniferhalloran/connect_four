@@ -7,12 +7,14 @@ RSpec.describe Computer do
   it "exists" do
     board = Board.new
     computer = Computer.new(board)
+
   expect(computer).to be_an_instance_of(Computer)
 end
 
   it "initializes with a board" do
     board = Board.new
     computer = Computer.new(board)
+
   expect(computer.board).to eq(board)
 end
 
@@ -31,11 +33,17 @@ end
   end
 
   it "can validate columns" do
-    board = Board.new
-    computer = Computer.new(board)
-
-  expect(computer.available_column?("D")).to eq(true)
-  end
+      board = Board.new
+      computer = Computer.new(board)
+      computer.drop("A")
+      computer.drop("A")
+      computer.drop("A")
+      computer.drop("A")
+      computer.drop("A")
+      computer.drop("A")
+    expect(computer.available_column?("D")).to eq(true)
+    expect(computer.available_column?("A")).to eq(false)
+    end
 
   it "can drop an 'o' on the board" do
     board = Board.new
