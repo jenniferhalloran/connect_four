@@ -13,7 +13,7 @@ attr_reader :board, :player1, :computer, :turn, :turn_count, :turn_win
     @turn_count = 0
   end
 
-  def main_menu
+  def start_game
     welcome_message
     loop do
       user_input = gets.upcase.strip
@@ -144,7 +144,7 @@ attr_reader :board, :player1, :computer, :turn, :turn_count, :turn_win
     puts 'Love that for you'
     board = Board.new
     game = Game.new(board)
-    game.main_menu
+    game.start_game
   end
 
   def quit
