@@ -23,8 +23,8 @@ attr_reader :board
       @board.print_board
       p "That column is full, lets try that again."
       puts " "
-    elsif column_choice == "Q"
-      quit
+    # elsif column_choice == "Q"
+    #   quit
     else
       puts " "
       p "Silly goose, that's not a column! Try again."
@@ -32,7 +32,7 @@ attr_reader :board
   end
 
   def print_instruction
-    puts "Please enter a column A - G to place your piece ... or enter Q to quit :("
+    puts "Please enter a column A - G to place your piece."
   end
 
   def get_user_choice

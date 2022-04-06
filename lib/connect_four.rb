@@ -6,4 +6,4 @@ require './lib/computer'
 board = Board.new
 game= Game.new(board)
 
-game.main_menu
+game.start_game
